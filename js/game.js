@@ -1100,6 +1100,9 @@
     board.addEventListener('pointermove', onPointerMove);
     board.addEventListener('pointerup', onPointerUp);
     board.addEventListener('pointercancel', onPointerUp);
+    // iOS Safari decides on double-tap zoom at touchend; cancelling it here stops the zoom
+    // without affecting the pointer events the board uses.
+    board.addEventListener('touchend', e => { if (e.cancelable) e.preventDefault(); }, { passive: false });
     board.addEventListener('contextmenu', e => e.preventDefault());
     board.addEventListener('dblclick', e => e.preventDefault());
 

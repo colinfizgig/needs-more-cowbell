@@ -13,7 +13,9 @@
   --radius: 16px;
 }
 
-* { box-sizing: border-box; }
+/* `manipulation` keeps pinch-zoom but stops iOS Safari's double-tap-to-zoom.
+   touch-action isn't inherited, so it goes on every element. */
+* { box-sizing: border-box; touch-action: manipulation; }
 html, body { margin: 0; height: 100%; }
 body {
   background-color: var(--bg);
@@ -192,12 +194,13 @@ button { font: inherit; color: inherit; }
   border: 3px solid var(--line);
   border-radius: 14px;
   overflow: hidden;
-  touch-action: none;
   user-select: none;
   -webkit-user-select: none;
+  -webkit-touch-callout: none;
   box-shadow: 0 5px 0 var(--line);
   background: var(--line);
 }
+#board, #board * { touch-action: none; }
 .cell {
   position: relative;
   background: var(--c);
